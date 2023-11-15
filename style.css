@@ -39,7 +39,7 @@ nav{
     display: flex;
     flex-direction: row;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color:rgb(255, 255, 255);
+    color:#1978A5;
     font-size: 50px;
 }
 #login{
@@ -112,7 +112,7 @@ nav{
 }
 .clublogo{
     cursor: pointer;
-    height: 100px;
+    height: 150px;
     width: auto;
     float: right;
     position: relative;
@@ -207,6 +207,7 @@ nav{
     text-decoration: none;
 }
 .footer{ 
+   
     background-color:#161840;
     display:flex;
     justify-content: center;
@@ -231,26 +232,8 @@ nav{
     align-items: center;
     
 }
-.titlecardV{ 
-    background-color: #e58977;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   margin-top: 5%;
-   height: 60px;
-}
-#clubbodych{
-    padding: 5%;
-    background-color: #f3efc6;
-}
-.titlecardch{ 
-    background-color: #fc0404;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   margin-top: 5%;
-   height: 60px;
-}
+
+
 .titlecardva{ 
     background-color: #b81818;
     display: flex;
