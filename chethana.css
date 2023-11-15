@@ -116,6 +116,9 @@ nav{
         margin-top: 8%;
         width: 95vw;
     }
+    #webname{
+        font-size: 40px;
+    }
 }
 @media screen and (max-width:390px){
     #content{
