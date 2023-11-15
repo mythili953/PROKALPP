@@ -57,17 +57,20 @@ nav{
     background: #1f8bca;
     box-shadow: 0 0 5px #1f8bca, 0 0 25px #1f8bca, 0 0 50px #1f8bca, 0 0 200px #1f8bca;
 }
-#clubbodych{
+body{
     padding: 5%;
-    background-color: #f3efc6;
+    background-color: #ecc0be;
 }
-.titlecardch{ 
-    background-color: #fc0404;
+.titlecard{ 
+    background-color:#a3464a;
     display: flex;
     justify-content: center;
     align-items: center;
    margin-top: 5%;
    height: 60px;
+}
+H1{
+    color: white;
 }
 .socials{
     margin-top: 60px;
@@ -92,11 +95,9 @@ nav{
     float: left;
     padding: 2%;
     margin:5%;
-    border-left: #e00a0a solid 4px;
+    border-left:#387f80 solid 4px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bolder;
     font-size: 30px;
     line-height: 100%;
 }
-
-

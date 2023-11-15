@@ -7,6 +7,10 @@
 ::-webkit-scrollbar {
     display: none;
 }
+body{
+    background-color: #8fe8e3 ;
+    padding: 5%;
+}
 
 nav{
     position: fixed;
@@ -16,7 +20,7 @@ nav{
     left:0;
    }
 .navbar{
-    background-color: #9adff4;
+    background-color: #1978A5;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +40,7 @@ nav{
     display: flex;
     flex-direction: row;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color:#1978A5;
+    color:rgb(255, 255, 255);
     font-size: 50px;
 }
 #login{
@@ -57,12 +61,9 @@ nav{
     background: #1f8bca;
     box-shadow: 0 0 5px #1f8bca, 0 0 25px #1f8bca, 0 0 50px #1f8bca, 0 0 200px #1f8bca;
 }
-#clubbodych{
-    padding: 5%;
-    background-color: #f3efc6;
-}
-.titlecardch{ 
-    background-color: #fc0404;
+
+.titlecard{ 
+    background-color: #041056;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,20 +72,29 @@ nav{
 }
 .socials{
     margin-top: 60px;
-    padding:0px 32%;
+    padding:0px 30%;
     display: flex;
     justify-content:space-between;
     align-items: center;
-  
+    
 }
 .contain{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  
+}
+h1{
+color: #ffffff;
+}
+#g2c2{
+    height: 40%;
+   
 }
 .h1{
-   margin: 2px;
+   margin: 20px;
    margin-top: 8%;
+   
 }
 .h2{
     height: auto;
@@ -92,11 +102,9 @@ nav{
     float: left;
     padding: 2%;
     margin:5%;
-    border-left: #e00a0a solid 4px;
+    border-left: #05716C solid 4px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bolder;
     font-size: 30px;
     line-height: 100%;
 }
-
-
