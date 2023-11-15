@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./login.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html" class="logo">
+                <img id="logo" src="./assets/logo.png" alt="Campus Club Hub logo" />
+              </a>
+        </div>
+        <div id="title">
+            <h1>CAMPUS CLUB HUB</h1>
+        </div>
+        <div id="back">
+            <a href="./index.html"><button id="back">Back</button></a>
+        </div>
+    </header>
+    <div id="loginContainer">
+        <div class="heading">
+            <h1>Sign in</h1>
+        </div>
+        <div class="details">
+            <input id="emailID" type="text" placeholder="Email" name="email" required>  
+            <div class="password">
+              <input id="passwordID" type="password" name="password" placeholder="Password" required>
+              <img id="visibilityID" src="assets/invisible.png" alt="invisible" onclick="showPassword()">
+            </div>
+            <p id="error" style="color: red; display: flex; justify-content: center; align-items: center;"></p>
+        </div>
+        <div>
+          <p class="reset" id="reset" style="color: blue; text-decoration: underline; cursor: pointer; font-size: 15px;">Forgot password?</p>
+          <p style="font-size: 15px;">New User? <a href="./signup.html">Sign Up</a></p>
+        </div>
+        
+        <div class="signin">
+            <button class="signInButton">Sign In</button>
+            <h3>or</h3>
+            <div class="google">
+                <button class="signInButton signInWithGoogleButton"><img src="./assets/google.png" alt="google">Sign In with Google</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h1 id="footer">CAMPUS CLUB HUB</h1>
+    </footer>
+</body>
+<script> 
+  function showPassword() {
+  var x = document.getElementById("passwordID");
+  var visibilityIcon = document.getElementById("visibilityID");
+
+  if (x.type === "password") {
+    x.type = "text";
+    visibilityIcon.src = 'assets/visible.png';
+  } else {
+    x.type = "password";
+    visibilityIcon.src = 'assets/invisible.png';
+  }
+}
+</script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-app.js";
+    import { getDatabase, 
+             ref, 
+             update 
+            } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-database.js";
+    import { getAuth, 
+             signInWithEmailAndPassword, 
+             sendPasswordResetEmail, 
+             GoogleAuthProvider,
+             signInWithPopup 
+            } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDlGGDbdAnntuJPu9znmx2HRxeoxvb_Bc4",
+      authDomain: "campus-club-hub-a2f5b.firebaseapp.com",
+      databaseURL: "https://campus-club-hub-a2f5b-default-rtdb.firebaseio.com",
+      projectId: "campus-club-hub-a2f5b",
+      storageBucket: "campus-club-hub-a2f5b.appspot.com",
+      messagingSenderId: "131774428532",
+      appId: "1:131774428532:web:3b9296146483cd6121a821"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    document.addEventListener('DOMContentLoaded', function () {
+      const signInButton = document.querySelector('.signInButton');
+      const resetButton = document.querySelector('.reset');
+      signInButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        var email = document.getElementById('emailID').value;
+        var password = document.getElementById('passwordID').value;
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            const dt = new Date();
+            update(ref(database, 'users/' + user.uid), {
+              last_login: dt,
+            }).then(() => {
+              window.location = 'index.html';
+            });
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+            document.getElementById('error').textContent = errorMessage;
+          });
+      });
+      resetButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        var email = document.getElementById('emailID').value;
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            document.getElementById('error').textContent = "Password reset Email sent!";
+            document.getElementById('error').style.color = "green";
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            document.getElementById('error').textContent = errorMessage;
+        });
+      });
+      const signInWithGoogleButton = document.querySelector('.signInButton.signInWithGoogleButton');
+      signInWithGoogleButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                const info = result.user;
+                var email = info.email;
+                var username = info.displayName;
+                const userId = result.user.uid;
+                const userRef = ref(database, 'users/' + userId);
+                const dt = new Date();
+                update(userRef, {
+                    username: username,
+                    email: email,
+                    last_login: dt,
+                })
+                .then(() => {
+                    window.location.href = 'index.html';
+                })
+                .catch((error) => {
+                    console.error('Error during sign-in:', error.code, error.message);
+                });
+            })
+            .catch((error) => {
+                console.error('Error during sign-in:', error.code, error.message);
+            });
+    });
+  });
+  </script>
+</html>

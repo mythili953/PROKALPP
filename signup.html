@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./signup.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html" class="logo">
+                <img id="logo" src="./assets/logo.png" alt="Campus Club Hub logo" />
+              </a>
+        </div>
+        <div id="title">
+            <h1>CAMPUS CLUB HUB</h1>
+        </div>
+        <div id="back">
+            <a href="./login.html"><button id="back">Back</button></a>
+        </div>
+    </header>
+    <div id="loginContainer">
+        <div class="heading">
+            <h1>Sign Up</h1>
+        </div>
+        <div class="details">
+            <input type="text" placeholder="Username" id="usernameID" required>
+            <input type="text" placeholder="Email" id="emailID" required>
+            <div class="password">
+                <input id="passwordID" type="password" name="password" placeholder="Password" required>
+                <img id="visibilityID1" src="assets/invisible.png" alt="invisible" onclick="showPassword('passwordID', 'visibilityID1')">
+            </div>
+            <div class="password">
+                <input id="confirmpasswordID" type="password" name="password" placeholder="Confirm Password" required>
+                <img id="visibilityID2" src="assets/invisible.png" alt="invisible" onclick="showPassword('confirmpasswordID', 'visibilityID2')">
+            </div>
+            <p id="passwordMatchError" style="color: red; display: flex; justify-content: center; align-items: center;"></p>
+        </div>
+        <div class="signin">
+            <button class="signUpButton">Sign Up</button>
+        </div>
+    </div>
+    <footer>
+        <h1 id="footer">CAMPUS CLUB HUB</h1>
+    </footer>
+</body>
+<script>
+    function showPassword(inputID, visibilityIconID) {
+        var x = document.getElementById(inputID);
+        var visibilityIcon = document.getElementById(visibilityIconID);
+
+        if (x.type === "password") {
+            x.type = "text";
+            visibilityIcon.src = 'assets/visible.png';
+        } else {
+            x.type = "password";
+            visibilityIcon.src = 'assets/invisible.png';
+        }
+    }
+</script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-app.js";
+    import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-database.js"
+    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-auth.js";
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyDlGGDbdAnntuJPu9znmx2HRxeoxvb_Bc4",
+      authDomain: "campus-club-hub-a2f5b.firebaseapp.com",
+      databaseURL: "https://campus-club-hub-a2f5b-default-rtdb.firebaseio.com",
+      projectId: "campus-club-hub-a2f5b",
+      storageBucket: "campus-club-hub-a2f5b.appspot.com",
+      messagingSenderId: "131774428532",
+      appId: "1:131774428532:web:3b9296146483cd6121a821"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const signUpButton = document.querySelector('.signUpButton');
+        signUpButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            var email = document.getElementById('emailID').value;
+            var password = document.getElementById('passwordID').value;
+            var confirmPassword = document.getElementById('confirmpasswordID').value;
+            var username = document.getElementById('usernameID').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('passwordMatchError').textContent = 'Passwords do not match';
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                console.log('User created:', user);
+
+                // Wait until the user is created before proceeding
+                await sendEmailVerification(user);
+
+                const userId = user.uid;
+                const userRef = ref(database, 'users/' + userId);
+                const dt = new Date();
+                set(userRef, {
+                    username: username,
+                    email: email,
+                    last_login: dt,
+                    last_logout: dt
+                }).then(() => {
+                    window.location = 'index.html';
+                }).catch((error) => {
+                    console.log(error);
+                    document.getElementById('passwordMatchError').textContent = error.message;
+                });
+            } catch (error) {
+                document.getElementById('passwordMatchError').textContent = error.message;
+            }
+        });
+    });
+</script>
+</html>
