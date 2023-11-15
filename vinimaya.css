@@ -1,3 +1,8 @@
+body{
+    padding: 5%;
+    background-color: #fbcdd5;
+}
+
 *{
     padding: 0px;
     margin: 0px;
@@ -6,10 +11,6 @@
     }
 ::-webkit-scrollbar {
     display: none;
-}
-body{
-    background-color: #F4EEE1 ;
-    padding: 5%;
 }
 
 nav{
@@ -63,18 +64,21 @@ nav{
 }
 
 .titlecard{ 
-    background-color: #fe7e23;
+    background-color:#a3464a;
     display: flex;
     justify-content: center;
     align-items: center;
    margin-top: 5%;
    height: 60px;
 }
+H1{
+    color: white;
+}
 .socials{
     margin-top: 60px;
-  
+    padding:0px 32%;
     display: flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items: center;
   
 }
@@ -83,7 +87,6 @@ nav{
     flex-direction: row;
     flex-wrap: wrap;
 }
-
 .h1{
    margin: 2px;
    margin-top: 7%;
@@ -94,7 +97,7 @@ nav{
     float: left;
     padding: 2%;
     margin:5%;
-    border-left: #000000 solid 4px;
+    border-left:#387f80 solid 4px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bolder;
     font-size: 30px;
