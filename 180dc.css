@@ -4,6 +4,7 @@
     box-sizing: border-box;
    
     }
+   
 ::-webkit-scrollbar {
     display: none;
 }
@@ -33,7 +34,8 @@ nav{
     display: flex;
     height: 75px;
     width: auto;
-    cursor: pointer;    
+    cursor: pointer;  
+    outline: none;  
 }
 #webname{
     font-family: 'Teko', sans-serif;
@@ -55,6 +57,7 @@ nav{
     z-index: 1;
     padding: 10px 20px;
     border-radius: 10px;
+
 }
 #login button:hover{
     cursor: pointer;
@@ -69,6 +72,7 @@ nav{
     align-items: center;
    margin-top: 5%;
    height: 60px;
+   outline: none; 
 }
 .socials{
     margin-top: 60px;
