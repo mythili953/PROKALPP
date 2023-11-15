@@ -22,7 +22,7 @@
           <h1 id="webname">CAMPUS CLUB HUB</h1>
         </div>
         <div id="login">
-          <a href="./login.html"><button id="back">Log In</button></a>
+          <a href="./login.html" id="trial"><button id="back">Log In</button></a>
           <button id="logout">Log out</button>
       </div>
     </div>
@@ -284,7 +284,7 @@
                   const userRef = ref(database, 'users/' + userId);
                   get(userRef).then((snapshot) => {
                       const userData = snapshot.val();
-                      document.getElementById('back').textContent = 'Welcome, ' + userData.username;
+                      document.getElementById('trial').innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${userData.username}</button></a>`;                     
                   });
               } else {
               }
