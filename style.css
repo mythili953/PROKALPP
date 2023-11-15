@@ -143,7 +143,7 @@ nav{
 }
 .overlay:hover{
     opacity: 1;
-    outline: none; 
+    
 }
 .row1{
    display: flex;
@@ -189,7 +189,7 @@ nav{
     height: 185px;
     width:185px;
     border-radius: 15%;
-    background-color: #9b9a9a;
+    background-color: #bef282;
     display: flex;
     justify-content:center;
     margin: 2px;
