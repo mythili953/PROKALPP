@@ -331,6 +331,7 @@ nav{
     }
     #login{
         font-size: 1.25em;
+        flex-direction: column;
     }
     }
 @media screen and (max-width:390px){
