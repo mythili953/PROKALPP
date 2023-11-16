@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const userRef = ref(database, 'users/' + userId);
             get(userRef).then((snapshot) => {
                 const userData = snapshot.val();
-                document.getElementById('trial').innerHTML = `<a href="./apply.html"><button id="back">Apply</button></a>`;                     
+                document.getElementById('trial').innerHTML = `<a href="#popup1"><button id="back">Apply</button></a>`; 
+
             });
         } else {
         }
