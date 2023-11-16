@@ -359,5 +359,8 @@ nav{
         height: 125px;
         margin-bottom: 0px;
     }
+    .overlay--blur{
+        font-size: 30px;
+    }
     
 }
