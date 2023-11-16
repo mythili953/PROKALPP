@@ -30,11 +30,8 @@ body{
   #preloader.hide {
     opacity: 0;
     pointer-events: none;
-    transition-delay: 0.5s; /* Delay the transition until the opacity transition completes */
-    display: none;
-  }
-  
-  
+    transition-delay: 0.5s; 
+  }  
 nav{
     position: fixed;
     top: 0;
