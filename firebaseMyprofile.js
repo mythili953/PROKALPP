@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-app.js";
 import { getDatabase, set, ref, update, get } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-database.js"
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut, updatePassword } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-auth.js";
       
 const firebaseConfig = {
     apiKey: "AIzaSyDlGGDbdAnntuJPu9znmx2HRxeoxvb_Bc4",
@@ -60,3 +60,26 @@ logOutButton.addEventListener('click', (e) => {
         });
     }
 });
+const changePasswordButton = document.querySelector('.signUpButton');
+
+changePasswordButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    
+    const user = auth.currentUser;
+    const newPassword = document.getElementById('passwordID').value;
+    const confirmPassword = document.getElementById('confirmpasswordID').value;
+
+    if (newPassword !== confirmPassword) {
+        document.getElementById('passwordMatchError').textContent = 'Passwords do not match';
+        return;
+    }
+
+    try {
+        await updatePassword(user, newPassword);
+        document.getElementById('passwordChanged').textContent = 'Password changed!';
+    } catch (error) {
+        document.getElementById('passwordMatchError').textContent = error.message;
+    }
+});
+
+   
