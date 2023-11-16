@@ -49,8 +49,8 @@ nav{
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 0 3px #bbd0e2;
-    padding: 30px 30px;
-    height: auto;
+    padding: 10px 30px;
+    height: 125px;
     width: 100%;
    }
 #logo{
@@ -357,8 +357,5 @@ nav{
     .container{
         margin-top: 110px;
     }
-    .navbar{
-        height: 70px;
-    }
-    
+   
 }
