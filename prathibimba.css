@@ -71,13 +71,12 @@ nav{
    height: 60px;
 }
 .socials{
+    margin: auto;
     margin-top: 60px;
-    padding:0px 32%;
+    max-width: 320px;
     display: flex;
     justify-content:space-between;
     align-items: center;
-    
-    
 }
 #content{
     margin: auto;

@@ -73,8 +73,9 @@ h1{
     color: white;
 }
 .socials{
+    margin: auto;
     margin-top: 60px;
-    padding:0px 32%;
+    max-width: 320px;
     display: flex;
     justify-content:space-between;
     align-items: center;

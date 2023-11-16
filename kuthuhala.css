@@ -71,8 +71,9 @@ nav{
    height: 60px;
 }
 .socials{
+    margin: auto;
     margin-top: 60px;
-  
+    max-width: 320px;
     display: flex;
     justify-content:center;
     align-items: center;
