@@ -1,0 +1,32 @@
+.webname{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}.webname img{
+    height: 9vh;
+    width: auto;
+}
+#hub{
+    height: 7.425vh;
+}
+@media screen and (max-width: 820px) {
+    .webname img{
+        height: 5vh;
+        width: auto;
+    }
+    #hub{
+        height: 4.12vh;
+    }
+}
+@media screen and (max-width:390px){
+    .webname{
+        flex-direction: column;
+    }
+    .webname img{
+        height: 3.5vh;
+        width: auto;
+    }
+    #hub{
+        height: 2.8875vh;
+    }   
+}
