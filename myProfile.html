@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="./login.css">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="./signup.css">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./clubPages.css">
 </head>
-<body>
+<body style="background: #ddf4e4;">
     <header>
         <div id="logo">
             <a href="index.html" class="logo">
@@ -21,51 +21,49 @@
             <img src="./assets/hub.png" id="hub" alt="hub">
           </div>
         <div id="back">
-            <a href="./index.html"><button id="back">Back</button></a>
+          <button id="logout">Log Out</button>
         </div>
     </header>
-    <div id="loginContainer">
-        <div class="heading">
-            <h1>Sign in</h1>
-        </div>
-        <div class="details">
-            <input id="emailID" type="text" placeholder="Email" name="email" required>  
-            <div class="password">
-              <input id="passwordID" type="password" name="password" placeholder="Password" required>
-              <img id="visibilityID" src="assets/invisible.png" alt="invisible" onclick="showPassword()">
-            </div>
-            <p id="error" style="color: red; display: flex; justify-content: center; align-items: center;"></p>
-        </div>
-        <div>
-          <p class="reset" id="reset" style="color: blue; text-decoration: underline; cursor: pointer; font-size: 15px;">Forgot password?</p>
-          <p style="font-size: 15px;">New User? <a href="./signup.html">Sign Up</a></p>
-        </div>
-        
-        <div class="signin">
-            <button class="signInButton">Sign In</button>
-            <h3>or</h3>
-            <div class="google">
-                <button class="signInButton signInWithGoogleButton"><img src="./assets/google.png" alt="google">Sign In with Google</button>
-            </div>
-        </div>
+    <div id="information" style="width: 350px; margin: auto; border: 2px solid black; padding: 20px; border-radius: 10px;">
+      <h1> Hello, <span id="userName"></span>!</h1>
+      <div id="information1">
+        <h2>User data:</h2>
+        <h3>Email : <span id="emailProfile"></span></h3>
+        <h3>Username : <span id="userName1"></span></h3>
+      </div>
+    </div>
+    <div id="changePassword" style="width: 350px; margin: auto; border: 2px solid red; padding: 20px; border-radius: 10px;">
+      <h2>Change your Password:</h2>
+      <div class="password">
+        <input id="passwordID" type="password" name="password" placeholder="Password" required>
+        <img id="visibilityID1" src="assets/invisible.png" alt="invisible" onclick="showPassword('passwordID', 'visibilityID1')">
+    </div>
+    <div class="password">
+        <input id="confirmpasswordID" type="password" name="password" placeholder="Confirm Password" required>
+        <img id="visibilityID2" src="assets/invisible.png" alt="invisible" onclick="showPassword('confirmpasswordID', 'visibilityID2')">
+    </div>
+    <p id="passwordMatchError" style="color: red; display: flex; justify-content: center; align-items: center;"></p>
+    <div class="signin">
+      <button class="signUpButton" style="border: 2px solid black;">Change Password</button>
+  </div>
     </div>
     <footer>
         <h1 id="footer">CAMPUS CLUB HUB</h1>
     </footer>
 </body>
 <script> 
-  function showPassword() {
-  var x = document.getElementById("passwordID");
-  var visibilityIcon = document.getElementById("visibilityID");
+  function showPassword(inputID, visibilityIconID) {
+        var x = document.getElementById(inputID);
+        var visibilityIcon = document.getElementById(visibilityIconID);
 
-  if (x.type === "password") {
-    x.type = "text";
-    visibilityIcon.src = 'assets/visible.png';
-  } else {
-    x.type = "password";
-    visibilityIcon.src = 'assets/invisible.png';
-  }
-}
+        if (x.type === "password") {
+            x.type = "text";
+            visibilityIcon.src = 'assets/visible.png';
+        } else {
+            x.type = "password";
+            visibilityIcon.src = 'assets/invisible.png';
+        }
+    }
 </script>
-<script type="module" src="./firebaseLogin.js"></script>
+<script type="module" src="./firebaseMyprofile.js"></script>
 </html>

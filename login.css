@@ -67,8 +67,9 @@ header{
     border: 2px solid black;
     justify-content: space-around;
     align-items: center;
-    border-radius: 75px 25px 75px 25px;
+    border-radius: 65px 25px 65px 25px;
     background-color: #f0b8ba;
+    padding: 30px 0px;
 }
 #loginContainer .details{
     width: 300px;

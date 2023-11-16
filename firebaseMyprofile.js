@@ -20,22 +20,23 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Document loaded');
     const auth = getAuth();
     const database = getDatabase(app);
-    const trialElement = document.getElementById('trial');
-
+    const email = document.getElementById('emailProfile');
+    const userName = document.getElementById('userName');
+    const userName1 = document.getElementById('userName1');
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const userId = user.uid;
             const userRef = ref(database, 'users/' + userId);
             get(userRef).then((snapshot) => {
                 const userData = snapshot.val();
-                trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${userData.username}</button></a>`;
+                email.textContent = userData.email;
+                userName.textContent = userData.username;
+                userName1.textContent = userData.username;
             });
         } else {
-            trialElement.innerHTML = '<a href="./login.html" id="trial"><button id="back">Log In</button></a>';
         }
     });
 });
-
 const logOutButton = document.getElementById('logout');
 logOutButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -46,13 +47,14 @@ logOutButton.addEventListener('click', (e) => {
             last_logout: dt
         }).then(() => {
             signOut(auth).then(() => {
-            document.getElementById('trial').innerHTML = '<a href="./login.html"><button id="back">Log In</button></a>';
             alert('User logged out.');
+            window.location.href = 'index.html';
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 alert('Error!');
             });
+            
         }).catch((error) => {
             console.error(error);
         });
