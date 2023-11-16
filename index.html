@@ -275,45 +275,49 @@
       const auth = getAuth();
   
       document.addEventListener('DOMContentLoaded', function () {
-          console.log('Document loaded');
-          const auth = getAuth();
-          const database = getDatabase(app);
-          onAuthStateChanged(auth, (user) => {
-              if (user) {
-                  const userId = user.uid;
-                  const userRef = ref(database, 'users/' + userId);
-                  get(userRef).then((snapshot) => {
-                      const userData = snapshot.val();
-                      document.getElementById('trial').innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${userData.username}</button></a>`;                     
-                  });
-              } else {
-              }
-          });
-      });
-  
-      const logOutButton = document.getElementById('logout');
-      logOutButton.addEventListener('click', (e) => {
-          e.preventDefault();
-          const dt = new Date();
-          const user = auth.currentUser;
-  
+      console.log('Document loaded');
+      const auth = getAuth();
+      const database = getDatabase(app);
+      const trialElement = document.getElementById('trial');
+
+      onAuthStateChanged(auth, (user) => {
           if (user) {
-              update(ref(database, 'users/' + user.uid), {
-                  last_logout: dt
-              }).then(() => {
-                  signOut(auth).then(() => {
-                      document.getElementById('back').textContent = 'Log in';
-                      alert('User logged out.');
-                  }).catch((error) => {
-                      const errorCode = error.code;
-                      const errorMessage = error.message;
-                      alert('Error!');
-                  });
-              }).catch((error) => {
-                  console.error(error);
+              const userId = user.uid;
+              const userRef = ref(database, 'users/' + userId);
+              get(userRef).then((snapshot) => {
+                  const userData = snapshot.val();
+                  trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${userData.username}</button></a>`;
               });
+          } else {
+              // Reset the button content to the original state
+              trialElement.innerHTML = '<a href="./login.html" id="trial"><button id="back">Log In</button></a>';
           }
       });
+  });
+
+  const logOutButton = document.getElementById('logout');
+  logOutButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const dt = new Date();
+      const user = auth.currentUser;
+
+      if (user) {
+          update(ref(database, 'users/' + user.uid), {
+              last_logout: dt
+          }).then(() => {
+              signOut(auth).then(() => {
+                document.getElementById('trial').innerHTML = '<a href="./login.html"><button id="back">Log In</button></a>';
+                alert('User logged out.');
+              }).catch((error) => {
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  alert('Error!');
+              });
+          }).catch((error) => {
+              console.error(error);
+          });
+      }
+  });
   </script>
   
   </body>
