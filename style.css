@@ -281,6 +281,9 @@ nav{
         justify-content: center;
         margin: auto;
     }
+    .webname{
+        flex-direction: column;
+    }
     .webname img{
         height: 5vh;
         width: auto;
