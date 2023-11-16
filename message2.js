@@ -14,10 +14,10 @@ moduleA.controller("MsgController", function($scope) {
   $scope.User = "World";
   $scope.response = { msgList: list };
   $scope.newMsg = function() {
-    //console.log($("#txtNewMsg").val());
+    console.log($("#txtNewMsg").val());
     list.push($("#txtNewMsg").val());
     $("#txtNewMsg").val("");
-    //console.log(list);
+    console.log(list);
   };
 
   $scope.deleteMsg = function(index) {
