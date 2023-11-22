@@ -8,10 +8,10 @@
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     
   </head>
-  <body>
-    <div id="preloader">
-        <img src="./assets/Ghost.gif" alt="loading">
-    </div>
+<body>
+  <div id="preloader">
+    <img src="./assets/Ghost.gif" alt="loading">
+  </div>
     <nav>
       <div class="navbar">
         <div class="logoMain">
@@ -27,10 +27,9 @@
         <div id="login">
           <a href="./login.html" id="trial"><button id="back">Log In</button></a>
           <button id="logout">Log out</button>
+        </div>
       </div>
-    </div>
     </nav>
-
     <section class="container">
       <div class="slider-wrapper">
         <div class="slider">
@@ -53,9 +52,54 @@
       </div>
     </section>
 
-    <main>
+  <main>
     <div class="titlecard">
       <a class="title" href=""> <h1 id="title">ADHAMYA</h1> </a>
+    </div>
+    <div id="announcements">
+      <img src="./assets/announcements.png" alt="announcements">
+    </div>
+    <div id="myNav" class="overlay1">
+      <div class="overlay-content1">
+        <div class="message_box">
+          <div class="message_box_label">
+              Messages
+          </div>
+          <div class="message_list_container">
+              <ul class="message_list">
+                  <li class="message_content">
+                      <p class="message_full_text">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          . Aenean euismod Lorem ipsum dolor sit amet,
+                          consectetur adipiscing elit. Aenean euismod
+                      </p>
+                      <span class="message_date">7 day ago</span>
+                      <span class="message_author">Alex</span>
+                  </li>
+  
+                  <li class="message_content">
+                      <p class="message_full_text">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          . Aenean euismod
+                      </p>
+                      <span class="message_date">9 day ago</span>
+                      <span class="message_author">Hektor</span>
+                  </li>
+  
+  
+                  <li class="message_content">
+                      <p class="message_full_text">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          . Aenean euismod
+                      </p>
+                      <span class="message_date">28 day ago</span>
+                      <span class="message_author">John_sali</span>
+                  </li>
+              </ul>
+          </div>
+  
+      </div>
+      </div>
     </div>
     <div class="row1">
       <div class="col">
@@ -266,6 +310,23 @@
       document.getElementById("preloader").classList.add("hide");
     }, 2000); // 2000 milliseconds (2 seconds)
   });
+  const announcementsSwitch = document.querySelector('#announcements');
+  var x = false;
+  announcementsSwitch.addEventListener('click', function() {
+    if (x==false) {
+        openNav();
+        x = true;
+    } else {
+        closeNav();
+        x = false;
+    }
+  });
+  function openNav() {
+  document.getElementById("myNav").style.width = "100vw";
+  }
+  function closeNav() {
+    document.getElementById("myNav").style.width = "0vw";
+  }
 </script>
 <script type="module" src="./firebaseIndex.js"></script>
 </html>
