@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-app.js";
-import { getDatabase, set, ref, update, get } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-database.js"
+import { getDatabase, set, ref, update, get, onValue } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-database.js"
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.5.1/firebase-auth.js";
       
 const firebaseConfig = {
@@ -58,3 +58,50 @@ logOutButton.addEventListener('click', (e) => {
         });
     }
 });
+const dbRef = ref(database, 'Announcements');
+let messages = [];
+
+onValue(dbRef, (snapshot) => {
+  snapshot.forEach((childSnapshot) => {
+    const childKey = childSnapshot.key;
+    const childData = childSnapshot.val();
+
+    const announcement = {
+      text: childData.summary,
+      date: childData.EventDate,
+      author: "John_sali",
+    };
+
+    messages.push(announcement);
+  });
+  messageList.innerHTML = "";
+  messages.forEach((message) => {
+    const messageElement = createMessageElement(message);
+    messageList.appendChild(messageElement);
+  });
+}, {
+  onlyOnce: true
+});
+function createMessageElement(message) {
+  const li = document.createElement('li');
+  li.classList.add('message_content');
+
+  const p = document.createElement('p');
+  p.classList.add('message_full_text');
+  p.textContent = message.text;
+
+  const dateSpan = document.createElement('span');
+  dateSpan.classList.add('message_date');
+  dateSpan.textContent = 'Event date : '+message.date;
+
+  const authorSpan = document.createElement('span');
+  authorSpan.classList.add('message_author');
+  authorSpan.textContent = message.author;
+
+  li.appendChild(p);
+  li.appendChild(dateSpan);
+  li.appendChild(authorSpan);
+
+  return li;
+}
+const messageList = document.querySelector('.message_list');

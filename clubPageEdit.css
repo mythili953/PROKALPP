@@ -38,11 +38,6 @@ header{
     height: 75px;
     width: auto;
 } 
-#title h1{
-    font-family: monospace;
-    color:rgb(255, 255, 255);
-    font-size: 50px;
-}
 #back button{
     position: relative;
     border: none;
@@ -56,78 +51,26 @@ header{
     background: #1f8bca;
     box-shadow: 0 0 5px #1f8bca, 0 0 25px #1f8bca, 0 0 50px #1f8bca, 0 0 200px #1f8bca;
 }
-#loginContainer{
+#content{
     display: flex;
     flex-direction: column;
-    height: 600px;
-    width: 350px;
-    margin: auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    border: 2px solid black;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    border-radius: 65px 25px 65px 25px;
-    background-color: #f0b8ba;
-    padding: 30px 0px;
 }
-#loginContainer .details{
-    width: 300px;
+#container1,
+.inputContainer1{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.details input{
+.inputContainer1,
+#inputtext{
+    width: 80vw;
+    height: 50vh;
+}
+#inputtext{
     margin: 5px;
-    border: none;
-    background-color: azure;
-    border-bottom: 1px solid black;
-    padding: 10px;
-}
-.details .password input{
-    margin: 0;
-    border-bottom: none;
-}
-.password{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 5px;
-    background-color: azure;
-    border-bottom: 1px solid black;
-}
-.password img{
-    height: 25px;
-    width: auto;
-    padding-right: 10px;
-    cursor: pointer;
-}
-.questions{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 340px;
-}
-.signin{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.signInButton{
-    position: relative;
-    border: none;
-    transition: 0.2cvs ease-in;
-    z-index: 1;
-    width: 300px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.signInButton:hover{
-    cursor: pointer;
-    background: #9adff4;
-    box-shadow: 0 0 5px #9adff4, 0 0 25px #9adff4, 0 0 50px #9adff4, 0 0 200px #9adff4;
 }
 footer{ 
     background-color:#161840;

@@ -286,7 +286,7 @@ nav{
 
 .message_box {
     background-color: white;
-    width: 320px;
+    width: 80vw;
     border-radius: 5px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
     font-weight: 900;
@@ -315,11 +315,14 @@ ul.message_list {
 
 li.message_content {
     color: #a0a0a0;
-    font-size: 11px;
+    font-size: 20px;
     list-style-type: none;
     margin-bottom: 20px;
     position: relative;
     line-height: 1.7em;
+    display: flex;
+    flex-direction: column;
+    width: auto;
 }
 
 li.message_content::before {
