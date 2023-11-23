@@ -410,6 +410,8 @@ ul a:hover {
 ul li {
 	margin: 10px 0;
 	height: 25px;
+    display: flex;
+    align-items: center;
 }
 
 li i {
@@ -422,7 +424,12 @@ li i {
 	font-size: 12px;
 	text-align: center;
 }
-
+#mailIcon{
+    height: 40px;
+    width: auto;
+    margin: 5px;
+    cursor: pointer;
+}
 /* for tablet mode view */
 
 @media screen and (max-width: 1275px) {
