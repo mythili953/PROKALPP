@@ -53,23 +53,56 @@ logOutButton.addEventListener('click', (e) => {
     e.preventDefault();
     const dt = new Date();
     const user = auth.currentUser;
+
     if (user) {
-        update(ref(database, 'users/' + user.uid), {
-            last_logout: dt
-        }).then(() => {
-            signOut(auth).then(() => {
-            document.getElementById('trial').innerHTML = '<a href="./login.html"><button id="back">Log In</button></a>';
-            alert('User logged out.');
-            }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert('Error!');
+        const userId = user.uid;
+        const userRef = ref(database, 'users/' + userId);
+        const clubManagementRef = ref(database, 'Club Management/' + userId);
+
+        Promise.all([get(userRef), get(clubManagementRef)])
+            .then(([userData, clubManagementData]) => {
+                if (clubManagementData.exists()) {
+                    // Update last logout in 'Club Management/' data
+                    update(ref(database, 'Club Management/' + userId), {
+                        last_logout: dt
+                    }).then(() => {
+                        // Perform the sign-out
+                        signOut(auth).then(() => {
+                            document.getElementById('trial').innerHTML = '<a href="./login.html"><button id="back">Log In</button></a>';
+                            alert('User logged out.');
+                        }).catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            alert('Error!');
+                        });
+                    }).catch((error) => {
+                        console.error("Error updating Club Management data:", error);
+                    });
+                } else {
+                    // Update last logout in 'users/' data
+                    update(ref(database, 'users/' + userId), {
+                        last_logout: dt
+                    }).then(() => {
+                        // Perform the sign-out
+                        signOut(auth).then(() => {
+                            document.getElementById('trial').innerHTML = '<a href="./login.html"><button id="back">Log In</button></a>';
+                            alert('User logged out.');
+                        }).catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            alert('Error!');
+                        });
+                    }).catch((error) => {
+                        console.error("Error updating users data:", error);
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Error checking user and club management data:", error);
             });
-        }).catch((error) => {
-            console.error(error);
-        });
     }
 });
+
 const dbRef = ref(database, 'Announcements');
 let messages = [];
 
@@ -117,3 +150,20 @@ function createMessageElement(message) {
   return li;
 }
 const messageList = document.querySelector('.message_list');
+
+messageList.addEventListener('click', function (event) {
+    const clickedElement = event.target.closest('.message_content');
+
+    if (clickedElement) {
+        const authorElement = clickedElement.querySelector('.message_author');
+        const authorText = authorElement.textContent.trim();
+
+        // Extract only the author's name
+        const authorName = authorText.split(' ').slice(-1)[0].toLowerCase();
+        const gotoLink = authorName + '.html';
+        window.location = gotoLink;
+    }
+});
+
+
+

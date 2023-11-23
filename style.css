@@ -323,6 +323,7 @@ li.message_content {
     display: flex;
     flex-direction: column;
     width: auto;
+    cursor: pointer;
 }
 
 li.message_content::before {
