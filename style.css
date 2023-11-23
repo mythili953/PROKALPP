@@ -389,32 +389,32 @@ span.message_author {
 	border: 0px;
 }
 
-ul {
+.footer ul {
 	list-style: none;
 	color: #fff;
 	font-size: 15px;
 	letter-spacing: 0.5px;	
  }
 
-ul a {
+.footer ul a {
 	text-decoration: none;
 	outline: none;
 	color: #fff;
 	transition: 0.3s;
 }
 
-ul a:hover {
+.footer ul a:hover {
 	color: #ff9800;
 }
 
-ul li {
+.footer ul li {
 	margin: 10px 0;
 	height: 25px;
     display: flex;
     align-items: center;
 }
 
-li i {
+.footer li i {
 	margin-right: 20px;
 }
 .footer-bottom {
