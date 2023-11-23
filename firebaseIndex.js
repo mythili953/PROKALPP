@@ -69,7 +69,7 @@ onValue(dbRef, (snapshot) => {
     const announcement = {
       text: childData.summary,
       date: childData.EventDate,
-      author: "John_sali",
+      author: childData.AnnouncementBy,
     };
 
     messages.push(announcement);
@@ -96,7 +96,7 @@ function createMessageElement(message) {
 
   const authorSpan = document.createElement('span');
   authorSpan.classList.add('message_author');
-  authorSpan.textContent = message.author;
+  authorSpan.textContent = 'Announcement from '+message.author;
 
   li.appendChild(p);
   li.appendChild(dateSpan);

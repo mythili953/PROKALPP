@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             await sendEmailVerification(user);
 
             const userId = user.uid;
-            const userRef = ref(database, 'users/' + userId);
+            const userRef = ref(database, 'Club Management/' + userId);
             const dt = new Date();
             set(userRef, {
                 username: username,
@@ -48,11 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 last_login: dt,
                 last_logout: dt
             }).then(() => {
-                if(email=='campusclubhub@gmail.com'){
-                    window.location = 'campusClubHub.html'
-                }else{
-                    window.location = 'index.html';
-                }
+                document.getElementById('passwordMatchError').textContent = username+' account created!';
+                document.getElementById('passwordMatchError').style.color = 'green';
             }).catch((error) => {
                 console.log(error);
                 document.getElementById('passwordMatchError').textContent = error.message;
