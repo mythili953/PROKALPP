@@ -21,19 +21,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const auth = getAuth();
     const database = getDatabase(app);
     const trialElement = document.getElementById('trial');
-
     onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const userId = user.uid;
-            const userRef = ref(database, 'users/' + userId);
-            get(userRef).then((snapshot) => {
-                const userData = snapshot.val();
-                trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${userData.username}</button></a>`;
-            });
-        } else {
-            trialElement.innerHTML = '<a href="./login.html" id="trial"><button id="back">Log In</button></a>';
-        }
-    });
+    if (user) {
+      const userId = user.uid;
+      const userRef = ref(database, 'users/' + userId);
+      const clubManagementRef = ref(database, 'Club Management/' + userId);
+      Promise.all([get(userRef), get(clubManagementRef)])
+          .then(([userData, clubManagementData]) => {
+              if (clubManagementData.exists()) {
+                  const username = clubManagementData.val().username;
+                  trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${username}</button></a>`;
+              } else if (userData.exists()) {
+                  const username = userData.val().username;
+                  trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${username}</button></a>`;
+              } else {
+                  trialElement.innerHTML = '<a href="./login.html" id="trial"><button id="back">Log In</button></a>';
+              }
+          })
+          .catch((error) => {
+              console.error("Error checking user and club management data:", error);
+              trialElement.innerHTML = '<a href="./login.html" id="trial"><button id="back">Log In</button></a>';
+      });
+    } else {
+        trialElement.innerHTML = '<a href="./login.html" id="trial"><button id="back">Log In</button></a>';
+    }
+  });
 });
 
 const logOutButton = document.getElementById('logout');
