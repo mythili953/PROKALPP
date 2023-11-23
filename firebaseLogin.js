@@ -38,11 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         update(ref(database, 'users/' + user.uid), {
             last_login: dt,
         }).then(() => {
-            if(user.email=='campusclubhub@gmail.com'){
-                window.location = 'campusClubHub.html'
-            }else{
-                window.location = 'index.html';
-            }
+            window.location = 'index.html';
         });
         })
         .catch((error) => {

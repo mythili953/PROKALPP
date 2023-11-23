@@ -32,12 +32,15 @@ document.addEventListener('DOMContentLoaded', function () {
                   const username = clubManagementData.val().username;
                   trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${username}</button></a>`;
                   document.getElementById('loginlogin').style.display = 'none';
+                  document.getElementById('loginlogin1').innerHTML = '<a href="./clubPageEdit.html"><li>Add Club Announcements</li></a>';
               } else if (userData.exists()) {
                   const username = userData.val().username;
                   const userEmail = userData.val().email;
                   trialElement.innerHTML = `<a href="./myProfile.html"><button id="back">Welcome, ${username}</button></a>`;
-                  if(userEmail='campusclubhub@gmail.com'){
-                    document.getElementById('loginlogin').style.display = 'none';
+                  document.getElementById('loginlogin').style.display = 'none';
+                  document.getElementById('signupsignup').style.display = 'none';
+                  document.getElementById('clubloginclublogin').style.display = 'none';
+                  if(userEmail=='campusclubhub@gmail.com'){
                     document.getElementById('loginlogin1').innerHTML = '<a href="./campusClubHub.html"><li>Create Club Account</li></a>';
                   }
               } else {
