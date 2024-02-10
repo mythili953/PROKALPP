@@ -106,6 +106,7 @@ h1{
     font-size: 30px;
     line-height: 100%;
 }
+
 @media screen and (max-width: 820px) {
     #content{
         margin-top: 25%;
